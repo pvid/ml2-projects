@@ -1,9 +1,10 @@
 """
-Preprocessing of the IMDb dataset that can be downloaded
-from "http://ai.stanford.edu/~amaas/data/sentiment/"
+Preprocessing of the IMDb dataset.
+
+The raw data is available at "http://ai.stanford.edu/~amaas/data/sentiment/"
 
 The script assumes that the file 'aclImdb_v1.tar.gz' has
-been downloaded and extacted into '../data/aclImdb'
+been downloaded and extacted into '../data/aclImdb'.
 """
 
 from collections import Counter
@@ -12,9 +13,7 @@ import json
 import os
 from random import shuffle
 
-
 from gensim.utils import simple_tokenize
-import numpy as np
 
 
 def imdb_preprocess():
@@ -50,7 +49,7 @@ def imdb_preprocess():
     word_index["<EMPTY>"] = 0
     word_index["<UNKNOWN>"] = 1
 
-    with open('./data/word-index.json', 'w') as f:
+    with open('../data/word-index.json', 'w') as f:
         json.dump(word_index, f)
 
     # Encode reviews using word_index
@@ -78,14 +77,11 @@ def imdb_preprocess():
     test = [(r, 1) for r in transformed_reviews['test/pos']]
     test += [(r, 0) for r in transformed_reviews['test/neg']]
     shuffle(test)
-    validation = test[:10000]
-    test = test[10000:]
 
-    with open('./data/imdb-reviews.json', 'w') as f:
+    with open('../data/imdb-reviews.json', 'w') as f:
         json.dump(
             {
                 'train': train,
-                'validation': validation,
                 'test': test
             },
             f
