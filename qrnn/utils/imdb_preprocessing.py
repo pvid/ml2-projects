@@ -4,7 +4,7 @@ Preprocessing of the IMDb dataset.
 The raw data is available at "http://ai.stanford.edu/~amaas/data/sentiment/"
 
 The script assumes that the file 'aclImdb_v1.tar.gz' has
-been downloaded and extacted into '../data/aclImdb'.
+been downloaded and extacted into './data/aclImdb'.
 """
 
 from collections import Counter
@@ -17,7 +17,7 @@ from gensim.utils import simple_tokenize
 
 
 def imdb_preprocess():
-    imdb_dir = '../data/aclImdb'
+    imdb_dir = './data/aclImdb'
     subdirs = [
         'train/neg',
         'train/pos',
@@ -49,7 +49,7 @@ def imdb_preprocess():
     word_index["<EMPTY>"] = 0
     word_index["<UNKNOWN>"] = 1
 
-    with open('../data/word-index.json', 'w') as f:
+    with open('./data/word-index.json', 'w') as f:
         json.dump(word_index, f)
 
     # Encode reviews using word_index
@@ -78,7 +78,7 @@ def imdb_preprocess():
     test += [(r, 0) for r in transformed_reviews['test/neg']]
     shuffle(test)
 
-    with open('../data/imdb-reviews.json', 'w') as f:
+    with open('./data/imdb-reviews.json', 'w') as f:
         json.dump(
             {
                 'train': train,

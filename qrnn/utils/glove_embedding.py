@@ -19,27 +19,27 @@ import numpy as np
 
 def download_glove():
     """Download and unzip GloVe embedding file."""
-    glove_path = '../data/glove.840B.300d.txt'
-    glove_path_zip = '../data/glove.840B.300d.zip'
+    glove_path = './data/glove.840B.300d.txt'
+    glove_path_zip = './data/glove.840B.300d.zip'
     glove_url = "http://nlp.stanford.edu/data/glove.840B.300d.zip"
 
     if os.path.exists(glove_path):
-        print("The file 'glove.840B.300d.txt' found.")
+        pass
     elif os.path.exists(glove_path_zip):
         print("The file 'glove.840B.300d.zip' found. Unzipping...")
         with zipfile.ZipFile(glove_path_zip, "r") as zip:
-            zip.extractall("../data/")
+            zip.extractall("./data/")
         print("Done!")
     else:
         print("Downloading pretrained GloVe vectors... it will take some time")
         urllib.request.urlretrieve(glove_url, glove_path_zip)
         print("Unzipping...")
         with zipfile.ZipFile(glove_path_zip, "r") as zip:
-            zip.extractall("../data/")
+            zip.extractall("./data/")
         print("Done!")
 
 
-def generate_embedding(glove_path='../data/glove.840B.300d.txt'):
+def generate_embedding(glove_path='./data/glove.840B.300d.txt'):
     """
     Read GloVe file and generate embedding.
 
@@ -50,8 +50,7 @@ def generate_embedding(glove_path='../data/glove.840B.300d.txt'):
         Path to a GloVe embedding .txt file.
     """
     print("Generating embedding matrix for IMDb dataset...")
-
-    with open('../data/word-index.json', 'r') as f:
+    with open('./data/word-index.json', 'r') as f:
         word_index = json.load(f)
     n_words = len(word_index)
     embed_weights = np.zeros((n_words, 300), np.float32)
@@ -64,7 +63,7 @@ def generate_embedding(glove_path='../data/glove.840B.300d.txt'):
                 vector = np.array(items[1:301], np.float32)
                 idx = word_index[word]
                 embed_weights[idx, :] = vector
-    np.save("../data/embedding.npy", embed_weights)
+    np.save("./data/embedding.npy", embed_weights)
     print("Done!")
 
 
