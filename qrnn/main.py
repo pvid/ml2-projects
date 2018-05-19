@@ -9,9 +9,6 @@ from qr_imdb.models import model_lstm, model_cudnnlstm, model_qrnn, \
 from qr_imdb.train_eval import train_eval_loop
 from utils.glove_embedding import download_glove, generate_embedding
 
-# embed_weights = np.load("./data/embedding.npy")
-# train_eval_loop(5, embed_weights, model_qrnn, logdir='./qrnn_model')
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -50,6 +47,7 @@ if __name__ == "__main__":
         else:
             generate_embedding(args.glovepath)
     embed_weights = np.load("./data/embedding.npy")
+    print("Embedding shape is: {}".format(embed_weights.shape))
 
     model_map = {
         'qrnn': model_qrnn,

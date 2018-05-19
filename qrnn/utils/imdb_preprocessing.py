@@ -37,12 +37,12 @@ def imdb_preprocess():
     # Create vocabulary
     vocab_counts = Counter()
 
-    for review_set in reviews.values():
+    for review_set in [reviews['train/neg'], reviews['train/pos']]:
         for review in review_set:
             vocab_counts.update(simple_tokenize(review))
 
     word_counts = vocab_counts.most_common()
-    word_counts = [pair for pair in word_counts if pair[1] > 4]
+    word_counts = [pair for pair in word_counts if pair[1] > 2]
     word_index = {
         a[0]: i+2 for i, a in enumerate(word_counts)
     }

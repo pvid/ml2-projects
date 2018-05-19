@@ -7,4 +7,5 @@
 /.doit.db.bak
 /.doit.db.dat
 /.doit.db.dir
-/*model/*
+*model/
+*model1/
