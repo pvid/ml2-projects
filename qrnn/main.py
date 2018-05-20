@@ -47,7 +47,6 @@ if __name__ == "__main__":
         else:
             generate_embedding(args.glovepath)
     embed_weights = np.load("./data/embedding.npy")
-    print("Embedding shape is: {}".format(embed_weights.shape))
 
     model_map = {
         'qrnn': model_qrnn,
