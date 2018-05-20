@@ -4,21 +4,14 @@ A TensorFlow implementation of a proposed
 alternative to RNN based on convolutions described in the paper
 [Quasi-Recurrent Neural Networks](https://arxiv.org/pdf/1611.01576.pdf).
 
-<<<<<<< HEAD
 See my [report](../qrnn/report.pdf) for further details.
-=======
-See my [report](../master/qrnn/report.pdf) for further details.
->>>>>>> d2b51c63aa58c192bdba0f30229d7dc26a72b319
+
 Summaries from the training of the LSTM based model and the QRNN model
 can be found as tfrecords files in the directories 'lstm_summary' and
 'qrnn_summary' and can be viewed using Tensorboard.
 
 The actual implementation of the QR layer is in
-<<<<<<< HEAD
 [qr_imdb/qrnn.py](../qrnn/qr_imdb/qrnn.py)
-=======
-[qr_imdb/qrnn.py](../master/qrnn/qr_imdb/qrnn.py)
->>>>>>> d2b51c63aa58c192bdba0f30229d7dc26a72b319
 
 ### How to run training and evaluation
 
