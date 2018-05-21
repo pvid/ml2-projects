@@ -13,6 +13,14 @@ can be found as tfrecords files in the directories 'lstm_summary' and
 The actual implementation of the QR layer is in
 [qr_imdb/qrnn.py](../qrnn/qr_imdb/qrnn.py)
 
+## Requirements
+
+Tensorflow == 1.7.0
+Keras >= 2.0.9
+
+For IMDb preprocessing script, gemsim
+is required as well.
+
 ### How to run training and evaluation
 
 Please note, that the training script need an additional file - 'glove.840B.300d.txt'
