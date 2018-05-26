@@ -1,3 +1,12 @@
+"""
+A TensorFlow implementation based on the paper "Weight Uncertainty
+in Neural Networks" (https://arxiv.org/pdf/1505.05424.pdf).
+
+The implementation is adapted directly from the Dense layer implementation
+of TensorFlow 1.7.0 (https://github.com/tensorflow/tensorflow/blob/r1.7/tensorflow/python/layers/core.py)
+"""
+
+
 from math import pi
 import math
 
@@ -35,24 +44,28 @@ def gaussian_mixture_density(proportion, sigma1, sigma2):
             return res
         return density
 
-k = -0.5*math.log(2*math.pi)
 
 def _complexity_cost(weights, mean, sigma, prior_density):
+    k = -0.5*math.log(2*math.pi)
     cost = k - gen_math_ops.log(sigma) - 0.5*gen_math_ops.square((weights-mean)/sigma)
-#     cost = gen_math_ops.log(normal_pdf(weights, mean, sigma))
     cost -= gen_math_ops.log(prior_density(weights))
     cost = math_ops.reduce_sum(cost)
     return cost
 
 
 class BayesianDense(base.Layer):
+    """
+    Dense layer for Bayes by Backprop
 
+    The use of sampled weights (for training and posterior distibution
+    evaluation) if contolled by the 'sample' argument of the 'call' method.
+    """
     def __init__(
             self, units,
             activation=None,
             use_bias=True,
-            kernel_initializer=init_ops.random_normal_initializer(stddev=0.1),
-            bias_initializer=init_ops.random_normal_initializer(stddev=0.1),
+            kernel_initializer=None,
+            bias_initializer=None,
             kernel_rho_initializer=init_ops.constant_initializer(-3),
             bias_rho_initializer=init_ops.constant_initializer(-3),
             kernel_prior_density=gaussian_mixture_density(1, 0.1, 0),
@@ -163,7 +176,7 @@ class BayesianDense(base.Layer):
         self.add_loss(self.complexity_cost)
         self.built = True
 
-    def call(self, inputs, sample=False):
+    def call(self, inputs, sample):
         kernel = control_flow_ops.cond(sample, lambda: self.kernel_sample, lambda: self.kernel_mean)
 
         inputs = ops.convert_to_tensor(inputs, dtype=self.dtype)

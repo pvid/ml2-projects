@@ -12,7 +12,7 @@ for automatic computation of derivatives of expressions.
 * [QRNN](../master/qrnn) a TensorFlow implementation of a proposed
     alternative to RNN based on convolutions described in the paper
     [Quasi-Recurrent Neural Networks](https://arxiv.org/pdf/1611.01576.pdf).
-* [Weight Uncertainty & Bayes by Backprop](../master/bayesbybackprop) (TBD) replication of the paper
+* [Weight Uncertainty & Bayes by Backprop](../master/bayesbybackprop) replication of the paper
     [Weight Uncertainty in Neural Networks](https://arxiv.org/pdf/1505.05424.pdf),
     which explores a variational Bayesian NN architecture, which can be trained
     by backpropagation (and implemented for GPU). It explores the use of the

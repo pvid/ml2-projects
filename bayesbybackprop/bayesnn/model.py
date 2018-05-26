@@ -3,13 +3,6 @@ import numpy as np
 
 from .bayesdense import gaussian_mixture_density, BayesianDense
 
-def simple_model(x, sample=False):
-    prior = gaussian_mixture_density(0.25, np.exp(-1), np.exp(-6))
-    x = BayesianDense(1200, activation=tf.nn.relu, kernel_prior_density=prior)(x, sample)
-    x = BayesianDense(1200, activation=tf.nn.relu, kernel_prior_density=prior)(x, sample)
-    out = BayesianDense(10)(x, sample)
-    return out
-
 class BayesDenseNet(object):
 
     def __init__(self, n_units=1200, pi=0.25, log_s1=0.0, log_s2=-2):

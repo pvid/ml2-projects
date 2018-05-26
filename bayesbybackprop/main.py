@@ -1,12 +1,11 @@
 import argparse
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='3'
 import sys
 
 import numpy as np
 
 from bayesnn.bayesdense import gaussian_mixture_density
-from bayesnn.model import BayesDenseNet, simple_model
+from bayesnn.model import BayesDenseNet
 from bayesnn.train_loop import train_loop
 from bayesnn.pruning import prune_eval
 

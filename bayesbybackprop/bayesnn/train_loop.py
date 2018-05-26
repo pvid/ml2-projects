@@ -42,7 +42,7 @@ def train_loop(model, logdir, epochs=20):
     complexity_cost = model.complexity_cost
     loss_with_complexity = loss+(complexity_cost/60000)
 
-    train_op = tf.train.AdamOptimizer(learning_rate).minimize(loss_with_complexity, global_step=global_step)
+    train_op = tf.train.AdamOptimizer().minimize(loss_with_complexity, global_step=global_step)
 
     # Setup validation metrics
     accuracy, accuracy_op = tf.metrics.accuracy(predictions, tf.argmax(labels, axis=1))
