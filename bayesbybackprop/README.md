@@ -4,10 +4,10 @@ A TensorFlow implementation of a variational bayesian dense neural network
 based on  ["Weight Uncertainty in Neural Networks"](https://arxiv.org/pdf/1505.05424.pdf)
 
 We focus on the use of posterior distribution of weights for pruning
-(reducing the number of weighs). For details, see my [report](../bayesnn/report.pdf).
+(reducing the number of weighs). For details, see my [report](../bayesbybackprop/report.pdf).
 
 The implementation of the bayesian dense layes is in
-[bayesnn/bayesdense.py](../bayesnn/bayesdense.py)
+[bayesnn/bayesdense.py](../bayesbybackprop/bayesnn/bayesdense.py)
 
 ## Requirements
 
